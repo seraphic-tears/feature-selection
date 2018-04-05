@@ -1,20 +1,13 @@
-function [Newind,objvalue]= pkddfs(X,Y,a,b,gamma,k )
+function [Newind]= pkddfs(X,a,b,gamma,k )
 %
 % intialization
 X=X';
 % gamma=10e+6;
 [dim samples]=size(X);
 W = orth(rand(dim,k));
-% Q = orth(rand(samples,k));
-temp=unique(Y);
-clusternum=length(temp);
-%if clusternum==k
-ori_Q = zeros(samples,clusternum); 
-for i=1:samples
-    ori_Q(i,Y(i))=1;
-end
-% Q = ori_Q*diag(sqrt(1./(diag(ori_Q'*ori_Q)+eps)));
-Q =rand(samples, clusternum);
+Q = rand(samples,k); 
+Q = ori_Q*diag(sqrt(1./(diag(ori_Q'*ori_Q)+eps)));
+
 D = eye(dim);
 H = eye(samples)- (1/samples)*ones(samples,1)*ones(samples,1)';
 Iter=150;

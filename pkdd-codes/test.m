@@ -216,26 +216,6 @@ load('./datasets/Isolet.mat');
 
                  
       
-            % My Method
-            clear
-            clc
-            load('./datasets/jaffe.mat');
-            Acc=zeros(7,6);
-            clusternum=10;
-            NewFeaNum=[50 100 150 200 250 300];
-             param_alpha=[0.001  0.01  0.1 1  10  100  1000];
-             for j=1:7
-                 ind = pkddfs(fea,gnd,1,param_alpha(j),1000,clusternum)% c: number of clusters
-                 for i=1:6
-                     Newfea=fea(:,ind(1:NewFeaNum(i)));
-                     sum=0;
-                     for iteration=1:20
-                     label=litekmeans(Newfea,clusternum,'Replicates',10);
-                     sum=sum+ClusteringMeasure(gnd,label);
-                     end                         
-                     [Acc(j,i)]=sum/20;
-                 end
-             end
             
           % my method 
            
@@ -244,9 +224,8 @@ load('./datasets/Isolet.mat');
             load('./datasets/COIL20.mat');
           
             clusternum=20;
-            NewFeaNum=[ 200 ];
-            
-                 [ind,objour] = pkddfs(fea,gnd,10,100,1000,clusternum)% c: number of clusters
+            NewFeaNum=200 ;
+                 ind = pkddfs(fea,10,100,1000,clusternum)% c: number of clusters
                  for i=1:1
                      Newfea=fea(:,ind(1:NewFeaNum(i)));
                      label=litekmeans(Newfea,clusternum,'Replicates',20);
