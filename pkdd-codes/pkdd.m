@@ -1,4 +1,4 @@
-function [Newind]= pkddfs(X,a,b,gamma,k )
+function Newind= pkddfs(X,a,b,gamma,k )
 %
 % intialization
 X=X';
@@ -36,14 +36,12 @@ E=2*a*H*X'*W;
           break;
       end
   count=count+1;
-%   objvalue(count)=trace(H*X'*W*W'*X*H)-trace(Q'*H*X'*W*W'*X*H*Q)+a*norm((H*(X'*W-Q)),'fro')^2+b*trace(W'*D*W);
+
  objvalue(count)=trace(H*X'*W*W'*X*H)-trace(Q'*H*X'*W*W'*X*H*Q)+a*norm((H*(X'*W-Q)),'fro')^2+b*sum(sqrt(sum(W.*W,2)));
 end
 
     wi = sqrt(sum(W.*W,2));
     [temp, ind] = sort(wi,'descend');
-    Newind=ind;
-    save temp
 end
 
 

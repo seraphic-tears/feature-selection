@@ -208,8 +208,6 @@ load('./datasets/Isolet.mat');
                      label=litekmeans(Newfea,clusternum,'Replicates',20);
                      [Acc(iter),NMI(iter)]=ClusteringMeasure(gnd,label);
                      end     
-               meanacc(i)=mean(Acc);
-               meannmi(i)=mean(NMI);
                  end 
                  
                  
